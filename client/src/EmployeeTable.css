@@ -1,0 +1,10 @@
+
+.employee-table th{
+    border: 1px solid black;
+    padding: 5px;
+}
+
+.employee-table td{
+    border: 1px solid black;
+    padding: 5px;
+}
