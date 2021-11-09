@@ -21,6 +21,10 @@ function EmployeeTable() {
       setSelectAll(false)
     }
 
+    if (employeeList?.length === 0){
+      setSelectAll(false)
+    }
+
   }, [employeeList, setSelectAll]);
 
   const handleSelectEmployee = (idx, event) => {

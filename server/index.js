@@ -1,6 +1,7 @@
 const express = require('express');
 const port = process.env.PORT || 3001;
 const Employee = require('./model/employees.js');
+const Traits = require('./model/traits.js');
 
 const app = express();
 
@@ -11,14 +12,14 @@ app.listen(port, () => {
 //important to get the req.body
 app.use(express.json()) 
 
-app.get('/api', (req, res) => {
+app.get('/api/employee', (req, res) => {
     let promise = Employee.findAll();
     promise.then( dbRes => {
         res.json(dbRes.rows)
     })
 })
 
-app.post('/api', (req, res) => {
+app.post('/api/employee', (req, res) => {
 
     let promise = Employee.create(req.body.first_name, req.body.last_name, req.body.email_address, req.body.job);
     
@@ -30,19 +31,7 @@ app.post('/api', (req, res) => {
     })
 })
 
-// app.delete('/api/:id', (req, res) => {
-//     let promise = Employee.delete(req.params.id);
-//     console.log(promise);
-
-//     promise.then( dbRes => {
-//         res.status(201).json({
-//             message: "quote deleted",
-//             employee: dbRes.rows[0]
-//         })
-//     })
-// })
-
-app.delete('/api', (req, res) => {
+app.delete('/api/employee', (req, res) => {
     let promise = Employee.delete(req.body.selectedItems);
 
     promise.then( dbRes => {
@@ -53,7 +42,7 @@ app.delete('/api', (req, res) => {
     })
 })
 
-app.put('/api/:id', (req, res) => {
+app.put('/api/employee', (req, res) => {
     let promise = Employee.edit(req.body.first_name, req.body.last_name, req.body.email_address, req.body.job, req.params.id);
 
     promise.then( dbRes => {
@@ -61,5 +50,12 @@ app.put('/api/:id', (req, res) => {
             message: "quote edited",
             employee: dbRes.rows[0]
         })
+    })
+})
+
+app.get('/api/traits', (req, res) => {
+    let promise = Traits.findAll();
+    promise.then( dbRes => {
+        res.json(dbRes.rows)
     })
 })

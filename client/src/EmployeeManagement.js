@@ -9,7 +9,7 @@ function EmployeeManagement() {
   const { 
     employeeList, setEmployeeList,
     selectedEmployees, setSelectedEmployees,
-    editEmployee, setEditEmployee 
+    setEditEmployee 
   } = useContext(EmployeeContext)
 
   const [dropDownOption, setDropDownOption] = useState('delete')
@@ -28,7 +28,7 @@ function EmployeeManagement() {
                             .join(', ')
         }
         
-        axios('/api', {
+        axios('/api/employee', {
           method: 'DELETE',
           data: JSON.stringify( selectedObj ),
           headers: { 'Content-Type': 'application/json' },
@@ -46,15 +46,11 @@ function EmployeeManagement() {
         })
 
       } else if (dropDownOption==='edit'){
-
-        // divert the edit page 
-        // have the edit page pre- filled with the information
-
+ 
         let id = selectedEmployees[0]?.id
         let index = employeeList.findIndex(obj => obj.id === id);
-        setEditEmployee(employeeList[index])
+        setEditEmployee({...employeeList[index], idx: index})
         setRedirect(true)
-
 
       }
     } else {
@@ -77,18 +73,15 @@ function EmployeeManagement() {
       <div className="employee-management-div">
 
         <span>
-          {selectedEmployees?.length > 0 ? selectedEmployees?.length : "0"} item selected
-        </span>
-
-        <span>
-          <select 
+          <p class="selected-count-text">{selectedEmployees?.length > 0 ? selectedEmployees?.length : "0"} item selected</p>
+          <select
             onChange={(e) => {setDropDownOption(e.target.value)}} className="employee-updates-dropdown">
-              <option value="delete">Delete</option>
+              <option value="select action">Select Action</option>
+              {selectedEmployees?.length > 0 ? <option value="delete">Delete</option> : null}
               {selectedEmployees?.length === 1 ? <option value="edit">Edit</option>  : null}
           </select>
           <button onClick={handleSubmit} className="submit-btn"> Submit </button>
         </span>
-
         <span>
           <button>
           <Link to="/new-employee">Add New Employee</Link>

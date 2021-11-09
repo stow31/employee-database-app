@@ -5,6 +5,7 @@ export const EmployeeContext = createContext();
 export function EmployeeProvider(props){
 
     const [employeeList, setEmployeeList] = useState(null);
+    const [traitsList, setTraitsList] = useState(null);
     const [selectAll, setSelectAll] = useState(false);
     const [selectedEmployees, setSelectedEmployees] = useState();
     const [editEmployee, setEditEmployee] = useState();
@@ -18,7 +19,9 @@ export function EmployeeProvider(props){
         selectedEmployees,
         setSelectedEmployees,
         editEmployee, 
-        setEditEmployee
+        setEditEmployee,
+        traitsList, 
+        setTraitsList
         }
     }>
         {props.children}

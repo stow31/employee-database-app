@@ -1,4 +1,14 @@
-.new-employee-form input{
+.form-grid-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+}
+
+.col-one-container input{
     display: block;
     text-align: left;
+    margin: 10px 0;
+    border-radius: 7px;
+    width: 150px;
+    padding: 5px 5px;
 }
+

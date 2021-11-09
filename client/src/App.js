@@ -13,18 +13,25 @@ function App() {
   
   const {
     setEmployeeList,
+    setTraitsList
   } = useContext(EmployeeContext);
 
   useEffect(() => {
   axios
-    .get("/api")
+    .get("/api/employee")
     .then((res) => {
       setEmployeeList(
         res.data.map(obj=> ({...obj, checked: false}))
       )
-    }
-      );
-  }, [setEmployeeList]);
+    });
+  
+    axios
+      .get("/api/traits")
+      .then((res) => {
+        setTraitsList(res.data)
+      });
+
+  }, [setEmployeeList, setTraitsList]);
 
   return (
     <div className="App">

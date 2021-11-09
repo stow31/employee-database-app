@@ -1,7 +1,19 @@
 .App {
   text-align: center;
+  width: 70%;
+  margin: 0 auto;
 }
 
+button{
+  height: 30px;
+  background-color: #dcedf5;
+  border-radius: 25px;
+  padding: 0 17px;
+}
+
+h1, h2, p{
+  font-size: 15px;
+}
 
 @media (prefers-reduced-motion: no-preference) {
   .App-logo {

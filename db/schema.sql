@@ -31,3 +31,10 @@ INSERT INTO employees (first_name, last_name, email_address, job) VALUES ('Athen
 INSERT INTO employees (first_name, last_name, email_address, job) VALUES ('Cameron', 'Haddad', 'cam@gmail.com', 'Driller');
 
 UPDATE employees SET first_name=$1, last_name=$2, email_address=$3, job=$4 WHERE id = $5
+
+ALTER TABLE traits
+ADD trait_id TEXT;
+
+INSERT INTO traits (trait, icon, trait_id) VALUES ('Coffee lover', 'coffee-cup.png', 'coffee-lover' );
+
+INSERT INTO traits (trait, icon, trait_id) VALUES ('Dog person', 'dog.png', 'dog-person' );
