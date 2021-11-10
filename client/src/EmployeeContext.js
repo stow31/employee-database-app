@@ -9,6 +9,7 @@ export function EmployeeProvider(props){
     const [selectAll, setSelectAll] = useState(false);
     const [selectedEmployees, setSelectedEmployees] = useState();
     const [editEmployee, setEditEmployee] = useState();
+    const [userTraits, setUserTraits] = useState([]);
 
 
     return <EmployeeContext.Provider value={
@@ -21,7 +22,9 @@ export function EmployeeProvider(props){
         editEmployee, 
         setEditEmployee,
         traitsList, 
-        setTraitsList
+        setTraitsList,
+        userTraits, 
+        setUserTraits
         }
     }>
         {props.children}

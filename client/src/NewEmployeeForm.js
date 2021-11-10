@@ -10,12 +10,15 @@ function NewEmployeeForm(){
     const {
         employeeList,
         setEmployeeList,
-        traitsList,
-        setTraitsList
+        userTraits
       } = useContext(EmployeeContext);
 
     const [user, setUser] = useState()
     const [redirect, setRedirect] = useState(false)
+
+    // useEffect(() => {
+        
+    // }, [userTraits])
     
     const submit = e => {
         e.preventDefault()
@@ -26,10 +29,21 @@ function NewEmployeeForm(){
         })
             .then(res => {
                 setEmployeeList([...employeeList, {...res.data.employee, checked: false}])
-                setRedirect(true)
+                console.log(res.data.employee.id)
+                 
+                userTraits.forEach( traitId => {
+                    let traitObj = {trait_id: traitId, user_id: res.data.employee.id}
+                    
+                    axios('/api/employee_traits', {
+                        method: 'POST',
+                        data: JSON.stringify( traitObj ),
+                        headers: { 'Content-Type': 'application/json' },
+                        })
+                        . then( res => {
+                            setRedirect(true)
+                        })
+                })
             })
-
-
     }
 
     if (redirect) {

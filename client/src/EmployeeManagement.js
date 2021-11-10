@@ -73,7 +73,7 @@ function EmployeeManagement() {
       <div className="employee-management-div">
 
         <span>
-          <p class="selected-count-text">{selectedEmployees?.length > 0 ? selectedEmployees?.length : "0"} item selected</p>
+          <p className="selected-count-text">{selectedEmployees?.length > 0 ? selectedEmployees?.length : "0"} item selected</p>
           <select
             onChange={(e) => {setDropDownOption(e.target.value)}} className="employee-updates-dropdown">
               <option value="select action">Select Action</option>
@@ -82,6 +82,7 @@ function EmployeeManagement() {
           </select>
           <button onClick={handleSubmit} className="submit-btn"> Submit </button>
         </span>
+        
         <span>
           <button>
           <Link to="/new-employee">Add New Employee</Link>

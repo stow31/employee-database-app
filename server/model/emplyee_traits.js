@@ -3,13 +3,13 @@ const db = new Pool({
     database: 'employee_app'
 })
 
-const Traits = {
+const EmployeeTraits = {
     findAll: () => {
-        const sql = "SELECT * FROM traits;"
+        const sql = "SELECT * FROM emplyee_traits;"
         return db.query(sql);
     },
     create: (trait_id, user_id) => {
-        const sql = "INSERT INTO traits (trait_id, user_id) VALUES ($1, $2) returning *;";
+        const sql = "INSERT INTO emplyee_traits (trait_id, user_id) VALUES ($1, $2) returning *;";
 
         return db.query(sql, [trait_id, user_id]);
     }
@@ -24,4 +24,4 @@ const Traits = {
     //     return db.query(sql, [first_name, last_name, email_address, job, id])
 }
 
-module.exports = Traits;
+module.exports = EmployeeTraits;

@@ -2,6 +2,7 @@ const express = require('express');
 const port = process.env.PORT || 3001;
 const Employee = require('./model/employees.js');
 const Traits = require('./model/traits.js');
+const EmployeeTraits = require('./model/emplyee_traits.js');
 
 const app = express();
 
@@ -58,4 +59,20 @@ app.get('/api/traits', (req, res) => {
     promise.then( dbRes => {
         res.json(dbRes.rows)
     })
+})
+
+app.post('/api/employee_traits', (req, res) => {
+
+    console.log(req.body)
+
+    let promise = EmployeeTraits.create(req.body.trait_id, req.body.user_id);
+    
+    promise.then( dbRes => {
+        res.status(201).json({
+            message: "new quote created",
+            employee: dbRes.rows[0]
+        })
+    })
+
+    // res.json({message: created})
 })

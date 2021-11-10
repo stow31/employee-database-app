@@ -69,6 +69,7 @@ function EmployeeTable() {
             <th>Last Name</th>
             <th>Email Address</th>
             <th>Role</th>
+            <th>Traits</th>
             </tr>
         </thead>
         <tbody>
@@ -86,6 +87,7 @@ function EmployeeTable() {
                     <td>{obj.last_name}</td>
                     <td>{obj.email_address}</td>
                     <td>{obj.job}</td>
+                    {/* <td>{obj.tra}</td> */}
                 </tr>  
                 ) :
                 <tr>

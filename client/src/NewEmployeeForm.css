@@ -1,6 +1,7 @@
 .form-grid-container{
     display: grid;
     grid-template-columns: 1fr 1fr;
+    align-items: center;
 }
 
 .col-one-container input{
