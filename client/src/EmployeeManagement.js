@@ -12,22 +12,21 @@ function EmployeeManagement() {
     setEditEmployee 
   } = useContext(EmployeeContext)
 
-  const [dropDownOption, setDropDownOption] = useState('delete')
+  const [dropDownOption, setDropDownOption] = useState('')
   const [redirect, setRedirect] = useState(false)
 
   const handleSubmit = (e) =>{
     e.preventDefault();
 
+    console.log(selectedEmployees?.length)
+
     if (selectedEmployees?.length>0){
-
       if (dropDownOption==='delete'){
-
         let selectedObj = { 
           selectedItems: selectedEmployees
                             .map(obj => obj["id"])
                             .join(', ')
         }
-        
         axios('/api/employee', {
           method: 'DELETE',
           data: JSON.stringify( selectedObj ),
@@ -38,10 +37,9 @@ function EmployeeManagement() {
 
           arr.forEach( id => {
             let index = subEmployeeList.findIndex(obj => obj.id === Number(id));
-            
             subEmployeeList = [...subEmployeeList.slice(0, index), ...subEmployeeList.slice(index+1)];
           } )
-
+          
           setEmployeeList(subEmployeeList)
         })
 
